@@ -2,7 +2,7 @@ import { useReducer } from 'react'
 import { Counter } from './appReducer'
 const initalState:{count:number} = {count:0}
 export default function CounterWithPayload() {
-    const [state,dispatch] = useReducer<any>(Counter,initalState);
+    const [state,dispatch] = useReducer(Counter,initalState);
 
   return (
     <>
