@@ -1,29 +1,38 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:18-alpine'
-      reuseNode true
+    agent any
+    stages {
+        stage("build"){
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps{
+                // echo 'hello world'
+                sh '''
+                ls -la
+                node --version
+                npm --version
+                npm ci 
+                npm run build
+                ls -la
+                '''
+            }
+        }
+        stage("Test"){
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps{
+             sh '''
+             test -f build/index.html
+             npm test
+             '''
+            }
+        }
     }
-  }
-
-  stages {
-    stage("Install") {
-      steps {
-        sh 'npm ci'
-      }
-    }
-
-    stage("Test") {
-      steps {
-        sh 'npm test -- --watchAll=false'
-      }
-    }
-
-    stage("Build") {
-      steps {
-        sh 'npm run build'
-        sh 'test -f build/index.html'
-      }
-    }
-  }
 }
