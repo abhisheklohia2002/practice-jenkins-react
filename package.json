@@ -11,6 +11,7 @@
     "test": "react-scripts test --watchAll=false"
   },
   "dependencies": {
+    "netlify-cli": "^21.6.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^6.30.1",

@@ -3,8 +3,6 @@ pipeline {
 
     environment {
         NETLIFY_SITE_ID = 'c5ba686e-e005-47c8-81e1-e242ecd4c285'
-        // If you have a Netlify token, add it in Jenkins credentials and use:
-        // NETLIFY_AUTH_TOKEN = credentials('netlify-auth-token')
     }
 
     stages {
@@ -43,9 +41,6 @@ pipeline {
                     node_modules/.bin/netlify --version
 
                     echo "Deploying to production Site Id $NETLIFY_SITE_ID"
-
-                    # Put correct folder name below: dist / build / out
-                    # netlify deploy --prod --dir=dist --site=$NETLIFY_SITE_ID
                 '''
             }
         }
