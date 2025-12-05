@@ -16,9 +16,9 @@ pipeline {
       steps { sh 'npm ci' }
     }
 
-    stage('Lint') {
-      steps { sh 'npm run lint || true' }
-    }
+    // stage('Lint') {
+    //   steps { sh 'npm run lint || true' }
+    // }
 
     // stage('Test') {
     //   steps { sh 'npm test' }
