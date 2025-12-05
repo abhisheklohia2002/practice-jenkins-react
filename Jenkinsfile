@@ -56,7 +56,7 @@ pipeline {
 
     stage('Deploy Preview (Non-main branches)') {
       when {
-        not { branch 'main' }
+        not { branch 'develop' }
       }
 
       environment {
