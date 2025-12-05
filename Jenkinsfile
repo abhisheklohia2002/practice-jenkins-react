@@ -42,8 +42,8 @@ pipeline {
       }
 
       environment {
-        // NETLIFY_AUTH_TOKEN = credentials('NETLIFY_AUTH_TOKEN')
-        NETLIFY_SITE_ID    = 3d11b97b-74e1-4a5d-8e6a-b2bce380dd06
+        NETLIFY_AUTH_TOKEN = "nfp_Fi1dnyGKAxcqdWJCUji3dNBFyrKyx983b10f"
+        NETLIFY_SITE_ID    = "3d11b97b-74e1-4a5d-8e6a-b2bce380dd06"
       }
 
       steps {
@@ -54,14 +54,14 @@ pipeline {
       }
     }
 
-    stage('Deploy Preview (Non-main branches)') {
+    stage('Deploy Preview (Non-develop branches)') {
       when {
         not { branch 'develop' }
       }
 
       environment {
-        // NETLIFY_AUTH_TOKEN = credentials('NETLIFY_AUTH_TOKEN')
-        NETLIFY_SITE_ID    = 3d11b97b-74e1-4a5d-8e6a-b2bce380dd06
+        NETLIFY_AUTH_TOKEN = "nfp_Fi1dnyGKAxcqdWJCUji3dNBFyrKyx983b10f"
+        NETLIFY_SITE_ID    = "3d11b97b-74e1-4a5d-8e6a-b2bce380dd06"
       }
 
       steps {
