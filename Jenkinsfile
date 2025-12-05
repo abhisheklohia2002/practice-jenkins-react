@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   tools {
-    nodejs 'node18'   // this name must match Tools config
+    nodejs 'node18' 
   }
 
   stages {
@@ -16,13 +16,13 @@ pipeline {
       steps { sh 'npm ci' }
     }
 
-    // stage('Lint') {
-    //   steps { sh 'npm run lint || true' }
-    // }
+    stage('Lint') {
+      steps { sh 'npm run lint || true' }
+    }
 
-    // stage('Test') {
-    //   steps { sh 'npm test' }
-    // }
+    stage('Test') {
+      steps { sh 'npm test' }
+    }
 
     stage('Build') {
       steps {
@@ -63,7 +63,15 @@ pipeline {
   }
 
   post {
-    success { echo "✅ Pipeline successful. Netlify deploy done." }
-    failure { echo "❌ Pipeline failed. Check Jenkins logs." }
+    always {
+      junit '**/test-results.xml'
+      archiveArtifacts artifacts: 'dist/**', fingerprint: true
+    }
+    success {
+      echo 'Pipeline completed successfully!'
+    }
+    failure {
+      echo 'Pipeline failed!'
+    }
   }
 }
