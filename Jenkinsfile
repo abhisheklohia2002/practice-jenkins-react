@@ -20,8 +20,11 @@ pipeline {
       steps { sh 'npm run lint || true' }
     }
 
-    stage('Test') {
-       sh 'npm run test -- --run'
+   stage('Test') {
+      steps {
+        // vitest CI run (no watch)
+        sh 'npm run test -- --run'
+      }
     }
 
     stage('Build') {
