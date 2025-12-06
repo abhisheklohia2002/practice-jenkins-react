@@ -21,7 +21,7 @@ pipeline {
     }
 
     stage('Test') {
-      steps { sh 'npm test' }
+       sh 'npm run test -- --run'
     }
 
     stage('Build') {
@@ -63,10 +63,6 @@ pipeline {
   }
 
   post {
-    always {
-      junit '**/test-results.xml'
-      archiveArtifacts artifacts: 'dist/**', fingerprint: true
-    }
     success {
       echo 'Pipeline completed successfully!'
     }
