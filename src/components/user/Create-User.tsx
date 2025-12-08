@@ -7,10 +7,13 @@ import {
   Field,
   Switch,
   HStack,
+  Spinner,
   Text,
+  Box,
 } from "@chakra-ui/react";
 import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
 import type { formDataType } from "@/interfaces/constants";
+import { CustomToast } from "../custom-toast/Custom-Toast";
 import axios from "axios";
 const API = import.meta.env.VITE_API_URL;
 const Login = () => {
@@ -21,6 +24,8 @@ const Login = () => {
     phone_number: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showToast, setShowToast] = useState<boolean>(false);
   const { toggleColorMode } = useColorMode();
   const formBackground = useColorModeValue("gray.100", "gray.700");
   const handleChangeValue = (e: React.FormEvent) => {
@@ -31,13 +36,17 @@ const Login = () => {
   };
 
   const handleSubmitFormData = async () => {
-  try {
-    const res = await axios.post(`${API}/api/user/signUp`, formData);
-    console.log(res.data);
-  } catch (err) {
-    console.error(err);
-  }
-};
+    setIsLoading(true);
+    try {
+      const res = await axios.post(`${API}/api/user/signUp`, formData);
+      setIsLoading(false);
+      console.log(res.data);
+      setShowToast(true);
+    } catch (err) {
+      console.error(err);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Flex
@@ -128,7 +137,7 @@ const Login = () => {
           mb={6}
           w="100%"
         >
-          Sign up
+          {isLoading ? <Spinner size="lg" /> : " Sign up"}
         </Button>
 
         {/* Dark mode toggle */}
@@ -141,6 +150,15 @@ const Login = () => {
           </Switch.Root>
         </HStack>
       </Flex>
+      <Box position="fixed" bottom="4" right="4">
+        {showToast && (
+          <CustomToast
+            message="User created successfully"
+            type="success"
+            onClose={() => setShowToast(false)} // optional
+          />
+        )}
+      </Box>
     </Flex>
   );
 };

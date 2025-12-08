@@ -12,7 +12,7 @@ export default function Headers() {
   const data: NavItem[] = [
   { label: "Home", to: "home" },
   { label: "Features", to: "features" },
-  { label: "Pricing", to: "pricing" },
+  { label: "Products", to: "our-products" },
 ];
 const CTA:string = "Create Account";
   return (
@@ -26,7 +26,7 @@ const CTA:string = "Create Account";
       >
         {/* Logo */}
         <Image
-          src={Logo ?? "N/a"}   // works for Next (Logo.src) and Vite/CRA (Logo)
+          src={Logo ?? "N/a"}   
           h="50px"
           alt="Logo"
         />
@@ -36,10 +36,10 @@ const CTA:string = "Create Account";
           {data.map((item, i) => (
             <Link
               key={i}
-              to={item.to}        // IMPORTANT: your data needs a "to" field
+              to={item.to}       
               smooth={true}
               duration={500}
-              offset={-80}        // adjust for sticky header if needed
+              offset={-80}        
             >
               <Button variant={"outline"}>{item.label}</Button>
             </Link>
