@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Image, Flex, Button, HStack, chakra, Box } from "@chakra-ui/react";
 import { Link } from "react-scroll";
 // import data from "./header.data";
