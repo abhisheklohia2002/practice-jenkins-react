@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import ParnentCount from "../../components/use-callback/ParnentCount";
+// import ParnentCount from "../../components/use-callback/ParnentCount";
 
 export default function Contact() {
 const userName = useRef<HTMLInputElement>(null);
@@ -22,7 +22,7 @@ React.useEffect(() => {
   return (
     <>
       <h4>Register</h4>
-      <ParnentCount/>
+      {/* <ParnentCount/> */}
       <div>
         <form
         style={{
