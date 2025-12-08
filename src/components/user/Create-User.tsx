@@ -15,10 +15,10 @@ import axios from "axios";
 const API = import.meta.env.VITE_API_URL;
 const Login = () => {
   const [formData, setFormData] = useState<formDataType>({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    phone: "",
+    phone_number: "",
     password: "",
   });
   const { toggleColorMode } = useColorMode();
@@ -32,7 +32,7 @@ const Login = () => {
 
   const handleSubmitFormData = async () => {
   try {
-    const res = await axios.post(`${API}/user/signUp`, formData);
+    const res = await axios.post(`${API}/api/user/signUp`, formData);
     console.log(res.data);
   } catch (err) {
     console.error(err);
@@ -64,8 +64,8 @@ const Login = () => {
         <Field.Root mb={3}>
           <Field.Label>First Name</Field.Label>
           <Input
-            name="firstName"
-            value={formData.firstName}
+            name="first_name"
+            value={formData.first_name}
             onChange={handleChangeValue}
             placeholder="John"
             type="text"
@@ -76,8 +76,8 @@ const Login = () => {
         <Field.Root mb={3}>
           <Field.Label>Last Name</Field.Label>
           <Input
-            name="lastName"
-            value={formData.lastName}
+            name="last_name"
+            value={formData.last_name}
             onChange={handleChangeValue}
             placeholder="Doe"
             type="text"
@@ -100,8 +100,8 @@ const Login = () => {
         <Field.Root mb={3}>
           <Field.Label>Phone</Field.Label>
           <Input
-            name="phone"
-            value={formData.phone}
+            name="phone_number"
+            value={formData.phone_number}
             onChange={handleChangeValue}
             placeholder="123-456-7890"
             type="tel"
